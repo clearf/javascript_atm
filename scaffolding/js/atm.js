@@ -6,17 +6,29 @@
 window.onload = function(){
 
   document.getElementById("checkingDeposit").onclick = function(event){
-    var checkingAmount = document.getElementById('checkingAmount').value;
+    var checkingAmount = parseInt(document.getElementById('checkingAmount').value);
     var checkingBalance = document.getElementById('checkingBalance');
-    var newBalance = +checkingBalance.innerText.replace("$","") + +checkingAmount; // place plus sign in front to turn it into integer
+    var checkingBalanceInt = checkingBalance.innerText.replace("$","");
+    var newBalance = +checkingBalanceInt + +checkingAmount;
     checkingBalance.innerHTML = '$' + newBalance;
+
+    if (checkingBalanceInt === "0") {
+      var currentAccount = document.getElementsByClassName('balance')[0];
+      currentAccount.style.backgroundColor = "#E3E3E3";
+    }
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
-    var savingsAmount = document.getElementById('savingsAmount').value;
+    var savingsAmount = parseInt(document.getElementById('savingsAmount').value);
     var savingsBalance = document.getElementById('savingsBalance');
-    var newBalance = +savingsBalance.innerText.replace("$","") + +savingsAmount;
+    var savingsBalanceInt = savingsBalance.innerText.replace("$","");
+    var newBalance = +savingsBalanceInt + +savingsAmount;
     savingsBalance.innerHTML = '$' + newBalance;
+
+    if (savingsBalanceInt === "0") {
+      var currentAccount = document.getElementsByClassName('balance')[1];
+      currentAccount.style.backgroundColor = "#E3E3E3";
+    }
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -24,8 +36,12 @@ window.onload = function(){
     var checkingBalance = document.getElementById('checkingBalance');
     var checkingBalanceInt = checkingBalance.innerText.replace("$","");
     if (checkingWithdraw <= checkingBalanceInt) {
-      var newBalance = checkingBalanceInt - checkingWithdraw;
+      var newBalance = +checkingBalanceInt - +checkingWithdraw;
       checkingBalance.innerHTML = '$' + newBalance;
+      if (newBalance === 0) {
+        var currentAccount = document.getElementsByClassName('balance')[0];
+        currentAccount.style.backgroundColor = "#FE2E2E";
+      }
     } else {
       return false;
     }
@@ -36,8 +52,14 @@ window.onload = function(){
     var savingsBalance = document.getElementById('savingsBalance');
     var savingsBalanceInt = savingsBalance.innerText.replace("$","");
     if (savingsWithdraw <= savingsBalanceInt) {
-      var newBalance = savingsBalanceInt - savingsWithdraw;
+      var newBalance = +savingsBalanceInt - +savingsWithdraw;
       savingsBalance.innerHTML = '$' + newBalance;
+      if (newBalance === 0) {
+        var currentAccount = document.getElementsByClassName('balance')[1];
+        currentAccount.style.backgroundColor = "#FE2E2E";
+      }
+    } else {
+      return false;
     }
   };
 
