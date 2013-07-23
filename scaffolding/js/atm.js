@@ -23,6 +23,7 @@ window.onload = function(){
     }
   }
 
+  // combine with above //
   function reddifySaving() {
     if (savingsBalanceAmount === 0) {
       document.getElementsByClassName("balance")[1].style.background = "red"
@@ -52,6 +53,12 @@ window.onload = function(){
     if (Math.abs(num) <= checkingBalanceAmount) {
       checkingBalanceAmount -= num*1;
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+    } else if (Math.abs(num) <= (checkingBalanceAmount+savingsBalanceAmount)) {
+      var diff = num*1 - checkingBalanceAmount;
+      checkingBalanceAmount -= (num*1-diff);
+      savingsBalanceAmount -= (diff);
+      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
     }
     reddifyChecking();
   };
@@ -61,7 +68,14 @@ window.onload = function(){
     if (Math.abs(num) <= savingsBalanceAmount) {
       savingsBalanceAmount -= num*1;
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+    } else if (Math.abs(num) <= (savingsBalanceAmount+checkingBalanceAmount)) {
+      var diff = num*1 - savingsBalanceAmount;
+      savingsBalanceAmount -= (num*1-diff);
+      checkingBalanceAmount -= (diff);
+      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
     }
+
     reddifySaving();
   };
 
