@@ -3,6 +3,8 @@
 // At this point, all of the objects in the document are in the DOM,
 // and all the images and sub-frames have finished loading.
 
+window.onload = function(){
+
 // Returns the whole checkingBalance div
 var checkingBalance = document.getElementById("checkingBalance");
 // Sets initial checkingBalanceAmount
@@ -13,30 +15,22 @@ var savingsBalance = document.getElementById("savingsBalance");
 // Sets initial savingsBalanceAmount
 var savingsBalanceAmount = 0;
 
-window.onload = function(){
+ function reddify(accountAmount, index) { //checking is 0 and savings is 1
+    if (accountAmount === 0) {
+      document.getElementsByClassName("balance")[index].style.background = "red";
+    }
+    // unreddify as well
+  }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
-  function reddifyChecking() {
-    if (checkingBalanceAmount === 0) {
-      document.getElementsByClassName("balance")[0].style.background = "red"
-    }
-  }
-
-  // combine with above //
-  function reddifySaving() {
-    if (savingsBalanceAmount === 0) {
-      document.getElementsByClassName("balance")[1].style.background = "red"
-    }
-  }
-
   document.getElementById("checkingDeposit").onclick = function(event){
     var num = document.getElementById("checkingAmount").value;
     if (num >= 0) {
       checkingBalanceAmount += num*1;
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
     }
-    reddifyChecking();
+    reddify(checkingBalanceAmount,0);
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
@@ -45,7 +39,7 @@ window.onload = function(){
       savingsBalanceAmount += num*1;
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
     }
-    reddifySaving();
+    reddify(savingsBalanceAmount,1);
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -60,7 +54,7 @@ window.onload = function(){
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
     }
-    reddifyChecking();
+    reddify(checkingBalanceAmount,0);
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -75,8 +69,7 @@ window.onload = function(){
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
     }
-
-    reddifySaving();
+    reddify(savingsBalanceAmount,1);
   };
 
 };
