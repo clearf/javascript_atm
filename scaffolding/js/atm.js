@@ -40,6 +40,9 @@ window.onload = function(){
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
+    var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
+    savingsBalance -= savingsAmountValue;
+    document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
   };
 
 };
