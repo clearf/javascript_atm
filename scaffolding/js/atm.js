@@ -27,7 +27,10 @@ window.onload = function(){
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
-
+    var savingsWithdraw = document.getElementById('savingsAmount').value;
+    var savingsBalance = document.getElementById('savingsBalance');
+    var newBalance = +savingsBalance.innerText.replace("$","") - +savingsWithdraw;
+    savingsBalance.innerHTML = '$' + newBalance;
   };
 
 };
