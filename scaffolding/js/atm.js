@@ -4,12 +4,18 @@
 // and all the images and sub-frames have finished loading.
 
 window.onload = function(){
-
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
-  // The click event is raised when the user clicks on an element. 
+  // The click event is raised when the user clicks on an element.
+
+
+
 
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
+      var depositAmount = document.getElementById('checkingAmount').value;
+      var stringBalance = document.getElementById('checkingBalance').innerText.match(/\d+/)[0];
+      var balance = parseInt(stringBalance) + parseInt(depositAmount);
+      document.getElementById('checkingBalance').innerText = "$" + balance;
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
