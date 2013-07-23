@@ -20,34 +20,35 @@ window.onload = function(){
 
   document.getElementById("checkingDeposit").onclick = function(event){
     var num = document.getElementById("checkingAmount").value;
-    checkingBalanceAmount += num*1;
-    checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+    if (num >= 0) {
+      checkingBalanceAmount += num*1;
+      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+    }
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
     var num = document.getElementById("savingsAmount").value;
-    savingsBalanceAmount += num*1;
-    savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+    if (num >= 0) {
+      savingsBalanceAmount += num*1;
+      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+    }
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     var num = document.getElementById("checkingAmount").value;
-    checkingBalanceAmount -= num*1;
-    checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+    if (Math.abs(num) <= checkingBalanceAmount) {
+      checkingBalanceAmount -= num*1;
+      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+    }
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     var num = document.getElementById("savingsAmount").value;
-    savingsBalanceAmount -= num*1;
-    savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+    if (Math.abs(num) <= savingsBalanceAmount) {
+      savingsBalanceAmount -= num*1;
+      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+    }
   };
 
 };
-
-
-
-// function catWalk() {
-//   img.style.left = catPosition + "px";
-//   catPosition += 10;
-// }
 
