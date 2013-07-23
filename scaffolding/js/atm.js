@@ -20,17 +20,25 @@ window.onload = function(){
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
-    var checkingWithdraw = document.getElementById('checkingAmount').value;
+    var checkingWithdraw = parseInt(document.getElementById('checkingAmount').value);
     var checkingBalance = document.getElementById('checkingBalance');
-    var newBalance = +checkingBalance.innerText.replace("$","") - +checkingWithdraw;
-    checkingBalance.innerHTML = '$' + newBalance;
+    var checkingBalanceInt = checkingBalance.innerText.replace("$","");
+    if (checkingWithdraw <= checkingBalanceInt) {
+      var newBalance = checkingBalanceInt - checkingWithdraw;
+      checkingBalance.innerHTML = '$' + newBalance;
+    } else {
+      return false;
+    }
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
-    var savingsWithdraw = document.getElementById('savingsAmount').value;
+    var savingsWithdraw = parseInt(document.getElementById('savingsAmount').value);
     var savingsBalance = document.getElementById('savingsBalance');
-    var newBalance = +savingsBalance.innerText.replace("$","") - +savingsWithdraw;
-    savingsBalance.innerHTML = '$' + newBalance;
+    var savingsBalanceInt = savingsBalance.innerText.replace("$","");
+    if (savingsWithdraw <= savingsBalanceInt) {
+      var newBalance = savingsBalanceInt - savingsWithdraw;
+      savingsBalance.innerHTML = '$' + newBalance;
+    }
   };
 
 };
