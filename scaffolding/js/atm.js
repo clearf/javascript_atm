@@ -33,6 +33,9 @@ window.onload = function(){
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
+    var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
+    checkingBalance -= checkingAmountValue;
+    document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
