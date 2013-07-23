@@ -4,18 +4,14 @@
 // and all the images and sub-frames have finished loading.
 
 // Returns the whole checkingBalance div
-var checkingBalance = document.getElementById("checkingBalance")
+var checkingBalance = document.getElementById("checkingBalance");
 // Sets initial checkingBalanceAmount
-var checkingBalanceAmount = 0
-// Sets the text for the initial checkingBalanceAmount using concat
-// checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+var checkingBalanceAmount = 0;
 
 // Returns the whole savingsBalance div
-var savingsBalance = document.getElementById("savingsBalance")
+var savingsBalance = document.getElementById("savingsBalance");
 // Sets initial savingsBalanceAmount
-var savingsBalanceAmount = 0
-// Sets the text for the initial savingsBalanceAmount using concat
-// savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+var savingsBalanceAmount = 0;
 
 window.onload = function(){
 
@@ -35,11 +31,15 @@ window.onload = function(){
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the checkingWithdraw button is clicked
+    var num = document.getElementById("checkingAmount").value;
+    checkingBalanceAmount -= num*1;
+    checkingBalance.innerHTML = "$"+checkingBalanceAmount;
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the savingsWithdraw button is clicked
+    var num = document.getElementById("savingsAmount").value;
+    savingsBalanceAmount -= num*1;
+    savingsBalance.innerHTML = "$"+savingsBalanceAmount;
   };
 
 };
