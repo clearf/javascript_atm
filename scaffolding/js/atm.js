@@ -14,20 +14,32 @@ window.onload = function(){
     // Any code you put in here will be run when the checkingDeposit button is clicked
       var depositAmount = document.getElementById('checkingAmount').value;
       var stringBalance = document.getElementById('checkingBalance').innerText.match(/\d+/)[0];
-      var balance = parseInt(stringBalance) + parseInt(depositAmount);
-      document.getElementById('checkingBalance').innerText = "$" + balance;
+      var checkingBalance = parseInt(stringBalance) + parseInt(depositAmount);
+      document.getElementById('checkingBalance').innerText = "$" + checkingBalance;
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
     // Any code you put in here will be run when the savingsDeposit button is clicked
+      var savingsAmount = document.getElementById('savingsAmount').value;
+      var stringBalance = document.getElementById('savingsBalance').innerText.match(/\d+/)[0];
+      var savingsBalance = parseInt(stringBalance) + parseInt(savingsAmount);
+      document.getElementById('savingsBalance').innerText = "$" + savingsBalance;
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
+      var withdrawAmount = document.getElementById('checkingAmount').value;
+      var stringBalance = document.getElementById('checkingBalance').innerText.match(/\d+/)[0];
+      var checkingBalance = parseInt(stringBalance) - parseInt(withdrawAmount);
+      document.getElementById('checkingBalance').innerText = "$" + checkingBalance;
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
+      var withdrawAmount = document.getElementById('savingsAmount').value;
+      var stringBalance = document.getElementById('savingsBalance').innerText.match(/\d+/)[0];
+      var savingsBalance = parseInt(stringBalance) - parseInt(withdrawAmount);
+      document.getElementById('savingsBalance').innerText = "$" + savingsBalance;
   };
 
 };
