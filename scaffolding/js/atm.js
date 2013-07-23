@@ -13,7 +13,7 @@ window.onload = function(){
     checkingBalance.innerHTML = '$' + newBalance;
 
     if (checkingBalanceInt === "0") {
-      var currentAccount = document.getElementsByClassName('balance')[0];
+      var currentAccount = document.getElementById('checkingBalance');
       currentAccount.style.backgroundColor = "#E3E3E3";
     }
   };
@@ -26,7 +26,7 @@ window.onload = function(){
     savingsBalance.innerHTML = '$' + newBalance;
 
     if (savingsBalanceInt === "0") {
-      var currentAccount = document.getElementsByClassName('balance')[1];
+      var currentAccount = document.getElementById('savingsBalance');
       currentAccount.style.backgroundColor = "#E3E3E3";
     }
   };
@@ -39,7 +39,7 @@ window.onload = function(){
       var newBalance = +checkingBalanceInt - +checkingWithdraw;
       checkingBalance.innerHTML = '$' + newBalance;
       if (newBalance === 0) {
-        var currentAccount = document.getElementsByClassName('balance')[0];
+        var currentAccount = document.getElementById('checkingBalance');
         currentAccount.style.backgroundColor = "#FE2E2E";
       }
     } else {
@@ -55,7 +55,7 @@ window.onload = function(){
       var newBalance = +savingsBalanceInt - +savingsWithdraw;
       savingsBalance.innerHTML = '$' + newBalance;
       if (newBalance === 0) {
-        var currentAccount = document.getElementsByClassName('balance')[1];
+        var currentAccount = document.getElementById('savingsBalance');
         currentAccount.style.backgroundColor = "#FE2E2E";
       }
     } else {
