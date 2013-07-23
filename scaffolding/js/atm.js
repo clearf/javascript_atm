@@ -20,12 +20,15 @@ window.onload = function(){
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
     var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
-    checkingBalance = checkingBalance + checkingAmountValue;
+    checkingBalance += checkingAmountValue;
     document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
     // Any code you put in here will be run when the savingsDeposit button is clicked
+    var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
+    savingsBalance += savingsAmountValue;
+    document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
