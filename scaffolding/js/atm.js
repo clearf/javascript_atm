@@ -17,7 +17,10 @@ window.onload = function(){
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
-
+    var checkingWithdraw = document.getElementById('checkingAmount').value;
+    var checkingBalance = document.getElementById('checkingBalance');
+    var newBalance = +checkingBalance.innerText.replace("$","") - +checkingWithdraw;
+    checkingBalance.innerHTML = '$' + newBalance;
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
