@@ -13,7 +13,10 @@ window.onload = function(){
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
-
+    var savingsAmount = document.getElementById('savingsAmount').value;
+    var savingsBalance = document.getElementById('savingsBalance');
+    var newBalance = +savingsBalance.innerText.replace("$","") + +savingsAmount;
+    savingsBalance.innerHTML = '$' + newBalance;
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
