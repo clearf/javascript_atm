@@ -17,6 +17,17 @@ window.onload = function(){
 
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
+  function reddifyChecking() {
+    if (checkingBalanceAmount === 0) {
+      document.getElementsByClassName("balance")[0].style.background = "red"
+    }
+  }
+
+  function reddifySaving() {
+    if (savingsBalanceAmount === 0) {
+      document.getElementsByClassName("balance")[1].style.background = "red"
+    }
+  }
 
   document.getElementById("checkingDeposit").onclick = function(event){
     var num = document.getElementById("checkingAmount").value;
@@ -24,6 +35,7 @@ window.onload = function(){
       checkingBalanceAmount += num*1;
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
     }
+    reddifyChecking();
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
@@ -32,6 +44,7 @@ window.onload = function(){
       savingsBalanceAmount += num*1;
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
     }
+    reddifySaving();
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -40,6 +53,7 @@ window.onload = function(){
       checkingBalanceAmount -= num*1;
       checkingBalance.innerHTML = "$"+checkingBalanceAmount;
     }
+    reddifyChecking();
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -48,6 +62,7 @@ window.onload = function(){
       savingsBalanceAmount -= num*1;
       savingsBalance.innerHTML = "$"+savingsBalanceAmount;
     }
+    reddifySaving();
   };
 
 };
