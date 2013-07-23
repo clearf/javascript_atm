@@ -14,6 +14,22 @@ checking_text.innerHTML = checking;
 var savings_text = document.getElementById("savingsBalance");
 savings_text.innerHTML = savings;
 
+function background_color()  {
+  if (checking === 0 && savings === 0) {
+    document.getElementById("checkingBalance").style.background = "red";
+    document.getElementById("savingsBalance").style.background = "red";
+  } else if (savings !== 0 && checking ===0) {
+    document.getElementById("savingsBalance").style.background = "grey";
+    document.getElementById("checkingBalance").style.background = "red";
+  } else if (checking !== 0 && savings !== 0) {
+    document.getElementById("checkingBalance").style.background = "grey";
+    document.getElementById("savingsBalance").style.background = "grey";
+  } else if (savings ===0 && checking !==0) {
+    document.getElementById("savingsBalance").style.background = "red";
+    document.getElementById("checkingBalance").style.background = "grey";
+  }
+}
+
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
 
@@ -23,6 +39,8 @@ savings_text.innerHTML = savings;
     checking = deposit += parseFloat(checking);
     var checking_text = document.getElementById("checkingBalance");
     checking_text.innerHTML = parseFloat(checking);
+
+    background_color();
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
@@ -31,32 +49,51 @@ savings_text.innerHTML = savings;
     savings = deposit += parseFloat(savings);
     var savings_text = document.getElementById("savingsBalance");
     savings_text.innerHTML = parseFloat(savings);
+
+    background_color();
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     var withdrawal = parseFloat(document.getElementById('checkingAmount').value);
-    if (checking < Math.abs(withdrawal - parseFloat(checking))) {
-      alert("NOT ENOUGH FUNDS");
-    } else {
-    checking = Math.abs(withdrawal - parseFloat(checking));
-    var checking_text = document.getElementById("checkingBalance");
+    if (withdrawal <= checking) {
+    checking -= parseFloat(withdrawal);
+    checking_text = document.getElementById("checkingBalance");
     checking_text.innerHTML = parseFloat(checking);
+
+    background_color();
+    } else if (withdrawal <= (checking + savings)) {
+    var difference = parseFloat(withdrawal) - checking;
+    savings -= difference;
+    checking -= parseFloat(withdrawal) - difference;
+
+    checking_text.innerHTML = parseFloat(checking);
+    savings_text.innerHTML = parseFloat(savings);
+
+    background_color();
     }
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
     var withdrawal = parseFloat(document.getElementById('savingsAmount').value);
-    if (savings < Math.abs(withdrawal - parseFloat(savings))) {
-      alert("NOT ENOUGH FUNDS");
-    } else {
-    savings = Math.abs(withdrawal - parseFloat(savings));
-    var savings_text = document.getElementById("savingsBalance");
-    savings_text.innerHTML = parseFloat(savings);
+
+    if (withdrawal <= savings) {
+      savings -= parseFloat(withdrawal);
+
+      savings_text = document.getElementById("savingsBalance");
+      savings_text.innerHTML = parseFloat(savings);
+
+      background_color();
+    } else if (withdrawal <= (savings+checking)) {
+      var difference = parseFloat(withdrawal) - savings;
+      checking -= difference;
+      savings -= parseFloat(withdrawal) - difference;
+
+      checking_text.innerHTML = parseFloat(checking);
+      savings_text.innerHTML = parseFloat(savings);
+
+      background_color();
     }
   };
-
-
-
 };
 
