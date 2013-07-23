@@ -31,7 +31,14 @@ window.onload = function(){
       var withdrawAmount = document.getElementById('checkingAmount').value;
       var stringBalance = document.getElementById('checkingBalance').innerText.match(/\d+/)[0];
       var checkingBalance = parseInt(stringBalance) - parseInt(withdrawAmount);
-      document.getElementById('checkingBalance').innerText = "$" + checkingBalance;
+
+      if (checkingBalance < 0){
+
+      } else {
+          document.getElementById('checkingBalance').innerText = "$" + checkingBalance;
+      }
+
+
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -39,7 +46,11 @@ window.onload = function(){
       var withdrawAmount = document.getElementById('savingsAmount').value;
       var stringBalance = document.getElementById('savingsBalance').innerText.match(/\d+/)[0];
       var savingsBalance = parseInt(stringBalance) - parseInt(withdrawAmount);
-      document.getElementById('savingsBalance').innerText = "$" + savingsBalance;
+      if (savingsBalance < 0){
+
+      } else {
+          document.getElementById('savingsBalance').innerText = "$" + savingsBalance;
+      }
   };
 
 };
