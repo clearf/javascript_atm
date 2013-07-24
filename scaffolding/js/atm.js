@@ -7,18 +7,17 @@ window.onload = function(){
 
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
-var deposit = 0;
+var checking = 0;
 
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
     // getting the value of deposit in an absolute # form.
-    var checking = parseFloat(document.getElementById("checkingAmount").value);
-    // Deposot is the "amount" put in. Adding this to the checking account
-    deposit = checking += parseFloat(deposit);
+    var deposit = parseFloat(document.getElementById("checkingAmount").value);
+    checking = deposit += parseFloat(checking);
     // making a variable out of the element ID checking balance.
     var checkingBalance = (document.getElementById("checkingBalance"));
     // making the balance above into the 'float' of deposit.
-    checkingBalance.innerHTML = parseFloat(deposit);
+    checkingBalance.innerHTML = parseFloat(checking);
     // how many goddamn SEMICOLONS
   };
 
@@ -28,6 +27,9 @@ var deposit = 0;
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
+    var withdraw = parseFloat(document.getElementById("checkingWithdraw"));
+
+
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
