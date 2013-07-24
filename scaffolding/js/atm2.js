@@ -4,10 +4,10 @@
 // and all the images and sub-frames have finished loading.
 
 window.onload = function(){
-
   function checkCurrentBalance() {
     var checkingBalance = parseInt(document.getElementById("checkingBalance").innerText.replace("$",""));
     var savingsBalance = parseInt(document.getElementById("savingsBalance").innerText.replace("$",""));
+    return checkingBalance + savingsBalance;
   }
 
   function depositMoney(account, amount) {
@@ -19,12 +19,15 @@ window.onload = function(){
 
   function withdrawMoney(account, amount) {
     var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+    var totalBalance = checkCurrentBalance();
     if (amount <= currentBalance) {
       currentBalance -= amount;
       document.getElementById(account).innerHTML = "$" + currentBalance;
       accountWarning(account);
+    } else if (amount <= totalBalance) {
+      overdraftProtection(account, amount);
     } else {
-      console.log("You don't have enough money!");
+      console.log("You don't have enough money in total!");
     }
   }
 
@@ -37,24 +40,28 @@ window.onload = function(){
     }
   }
 
-  function checkTotalBalance() {
-    checkCurrentBalance();
-    var totalBalance = checkingBalance + savingsBalance;
+  function overdraftProtection(account, amount) {
+    if (account === "checkingBalance") {
+      console.log("haha");
+      var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+      var currentTransaction = currentBalance;
+      currentBalance -= currentBalance;
+      document.getElementById(account).innerHTML = "$" + currentBalance;
+      var crossAccountBalance = parseInt(document.getElementById("savingsBalance").innerText.replace("$",""));
+      crossAccountBalance -= (amount - currentTransaction);
+      document.getElementById("savingsBalance").innerHTML = "$" + crossAccountBalance;
+      accountWarning(account);
+    } else if (account === "savingsBalance") {
+      var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+      var currentTransaction = currentBalance;
+      currentBalance -= currentBalance;
+      document.getElementById(account).innerHTML = "$" + currentBalance;
+      var crossAccountBalance = parseInt(document.getElementById("checkingBalance").innerText.replace("$",""));
+      crossAccountBalance -= (amount - currentTransaction);
+      document.getElementById("checkingBalance").innerHTML = "$" + crossAccountBalance;
+      accountWarning(account);
+    }
   }
-
-  // function overdraftProtection(account, amount) {
-  //   checkTotalBalance();
-  //   if (account === "checkingBalance") {
-  //     if (amount <= totalBalance {
-  //       // var crossAccountDeduction = amount - checkingBalance;
-  //       withdrawMoney(account, checkingBalance);
-  //       withdrawMoney("savingsBalance", (amount - checkingBalance));
-  //     }
-  //   } else { // this is savings instead
-  //     console.log("NOOO!");
-  //   }
-
-  // }
 
   document.getElementById("checkingDeposit").onclick = function(event){
     var checkingAmount = parseInt(document.getElementById("checkingAmount").value);
@@ -70,7 +77,6 @@ window.onload = function(){
     checkCurrentBalance();
     var checkingAmount = parseInt(document.getElementById("checkingAmount").value);
     withdrawMoney("checkingBalance", checkingAmount);
-    // overdraftProtection("checkingBalance", checkingAmount);
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -78,5 +84,4 @@ window.onload = function(){
     var savingsAmount = parseInt(document.getElementById("savingsAmount").value);
     withdrawMoney("savingsBalance", savingsAmount);
   };
-
 };
