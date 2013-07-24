@@ -1,28 +1,66 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onload
-// The load event fires at the end of the document loading process.
-// At this point, all of the objects in the document are in the DOM, 
-// and all the images and sub-frames have finished loading.
+window.onload = function() {
+  var checking = {
+    balance: 0
+  };
+  var savings = {
+    balance: 0
+  };
+  var checkingBalance = document.getElementById("checkingBalance");
+  var savingsBalance = document.getElementById("savingsBalance");
+  setBackgroundColor(checking, 0);
+  setBackgroundColor(savings, 1);
 
-window.onload = function(){
+  function setBackgroundColor(account, i) {
+    if (account.balance === 0) {
+      document.getElementsByClassName("balance")[i].style.background = "red";
+    } else {
+      document.getElementsByClassName("balance")[i].style.background = "#F5F5F5";
+    }
+  }
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
-  // The click event is raised when the user clicks on an element. 
+  function deposit(account, balanceDiv, elementId, i) {
+    var depositAmount = parseFloat(document.getElementById(elementId).value);
+    account.balance += depositAmount;
+    balanceDiv.innerHTML = "$" + account.balance;
+    setBackgroundColor(account, i);
+  }
+
+  function withdraw(account1, account2, balanceDiv1, balanceDiv2, elementId) {
+    var checkingAmount = parseFloat(document.getElementById(elementId).value);
+    if (checkingAmount <= account1.balance + account2.balance) {
+      if (checkingAmount <= account1.balance) {
+        account1.balance -= checkingAmount;
+        balanceDiv1.innerHTML = "$" + account1.balance;
+      } else {
+        account2.balance -= (checkingAmount - account1.balance);
+        balanceDiv2.innerHTML = "$" + account2.balance;
+        account1.balance = 0;
+        balanceDiv1.innerHTML = "$" + account1.balance;
+      }
+    }
+    setBackgroundColor(checking, 0);
+    setBackgroundColor(savings, 1);
+  }
 
   document.getElementById("checkingDeposit").onclick = function(event){
-    // Any code you put in here will be run when the checkingDeposit button is clicked
+    deposit(checking, checkingBalance, "checkingAmount", 0);
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
-    // Any code you put in here will be run when the savingsDeposit button is clicked
+    deposit(savings, savingsBalance, "savingsAmount", 1);
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the checkingWithdraw button is clicked
+    withdraw(checking, savings, checkingBalance, savingsBalance, "checkingAmount");
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the savingsWithdraw button is clicked
+    withdraw(savings, checking, savingsBalance, checkingBalance, "savingsAmount");
   };
-
 };
+
+
+
+
+
 
