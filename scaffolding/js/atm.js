@@ -34,17 +34,19 @@ window.onload = function(){
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
     var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
-    if (checkingAmountValue <= checkingBalance){
+    if (checkingAmountValue <= checkingBalance) {
       checkingBalance -= checkingAmountValue;
       document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
-    }
+    };
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
     var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
-    savingsBalance -= savingsAmountValue;
-    document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    if (savingsAmountValue <= savingsBalance) {
+      savingsBalance -= savingsAmountValue;
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    };
   };
 
 };
