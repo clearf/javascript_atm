@@ -42,7 +42,6 @@ window.onload = function(){
 
   function overdraftProtection(account, amount) {
     if (account === "checkingBalance") {
-      console.log("haha");
       var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
       var currentTransaction = currentBalance;
       currentBalance -= currentBalance;
