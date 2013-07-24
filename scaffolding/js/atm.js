@@ -37,7 +37,7 @@ function withdraw(which)  {
       account.innerText="$"+(balance - transaction);
     } else if(difference < 0) {
       var otherAccount = document.getElementById(other+"Balance");
-      var otherBalance = parseFloat(document.getElementById(other+"Balance").innerHTML.replace("$",""));
+      var otherBalance = parseFloat(otherAccount.innerHTML.replace("$",""));
       otherAccount.innerHTML="$"+(otherBalance - Math.abs(difference));
       if (otherBalance === Math.abs(difference)) {
         otherAccount.className += " zero";
