@@ -57,6 +57,11 @@ window.onload = function(){
     if (checkingAmountValue <= checkingBalance) {
       checkingBalance -= checkingAmountValue;
       document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+    } else if (checkingAmountValue <= (checkingBalance + savingsBalance)) {
+      savingsBalance = (checkingBalance + savingsBalance) - checkingAmountValue;
+      checkingBalance = 0;
+      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
     updateCheckingBackgroundColor();
   };
