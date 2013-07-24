@@ -11,7 +11,7 @@ window.onload = function(){
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
     // the increment
-  (parseInt(document.getElementById('checkingBalance').textContent) === (parseInt(document.getElementById('checkingBalance').textContent) + (parseInt(document.getElementById('checkingAmount').value);
+    document.getElementById('checkingBalance').textContent = ($ parseInt(document.getElementById('checkingBalance').textContent.match("[0-9]")) + document.getElementById('checkingAmount').value);
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
