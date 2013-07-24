@@ -1,28 +1,49 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onload
-// The load event fires at the end of the document loading process.
-// At this point, all of the objects in the document are in the DOM, 
-// and all the images and sub-frames have finished loading.
+window.onload = function() {
 
-window.onload = function(){
-
-  // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
-  // The click event is raised when the user clicks on an element. 
+  var checkingAccountBalance = 0;
+  var savingsAccountBalance = 0;
+  var checkingBalance = document.getElementById("checkingBalance");
+  var savingsBalance = document.getElementById("savingsBalance");
 
   document.getElementById("checkingDeposit").onclick = function(event){
-    // Any code you put in here will be run when the checkingDeposit button is clicked
+    var checkingAmount = document.getElementById("checkingAmount").value;
+    checkingAccountBalance += parseFloat(checkingAmount);
+    checkingBalance.innerHTML = "$" + checkingAccountBalance;
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
-    // Any code you put in here will be run when the savingsDeposit button is clicked
+    var savingsAmount = document.getElementById("savingsAmount").value;
+    savingsAccountBalance += parseFloat(savingsAmount);
+    savingsBalance.innerHTML = "$" + savingsAccountBalance;
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the checkingWithdraw button is clicked
+    var checkingAmount = parseFloat(document.getElementById("checkingAmount").value);
+    if (checkingAmount <= checkingAccountBalance + savingsAccountBalance) {
+      if (checkingAmount <= checkingAccountBalance) {
+        checkingAccountBalance -= checkingAmount;
+        checkingBalance.innerHTML = "$" + checkingAccountBalance;
+      } else {
+        savingsAccountBalance -= (checkingAmount - checkingAccountBalance);
+        savingsBalance.innerHTML = "$" + savingsAccountBalance;
+        checkingAccountBalance = 0;
+        checkingBalance.innerHTML = "$" + checkingAccountBalance;
+      }
+    }
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the savingsWithdraw button is clicked
+    var savingsAmount = parseFloat(document.getElementById("savingsAmount").value);
+    if (savingsAmount <= checkingAccountBalance + savingsAccountBalance) {
+      if (savingsAmount <= savingsAccountBalance) {
+        savingsAccountBalance -= savingsAmount;
+        savingsBalance.innerHTML = "$" + savingsAccountBalance;
+      } else {
+        checkingAccountBalance -= (savingsAmount - savingsAccountBalance);
+        checkingBalance.innerHTML = "$" + checkingAccountBalance;
+        savingsAccountBalance = 0;
+        savingsBalance.innerHTML = "$" + savingsAccountBalance;
+      }
+    }
   };
-
 };
-
