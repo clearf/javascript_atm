@@ -14,8 +14,9 @@ checking_text.innerHTML = checking;
 var savings_text = document.getElementById("savingsBalance");
 savings_text.innerHTML = savings;
 
-function background_color()  {
-  if (checking === 0 && savings === 0) {
+
+function background()  {
+  if (checking === -1 && savings === -1) {
     document.getElementById("checkingBalance").style.background = "red";
     document.getElementById("savingsBalance").style.background = "red";
   } else if (savings !== 0 && checking ===0) {
@@ -37,7 +38,7 @@ function background_color()  {
     var checking_text = document.getElementById("checkingBalance");
     checking_text.innerHTML = parseFloat(checking);
 
-    background_color();
+    background();
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
@@ -47,7 +48,7 @@ function background_color()  {
     var savings_text = document.getElementById("savingsBalance");
     savings_text.innerHTML = parseFloat(savings);
 
-    background_color();
+    background();
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -57,7 +58,8 @@ function background_color()  {
     checking_text = document.getElementById("checkingBalance");
     checking_text.innerHTML = parseFloat(checking);
 
-    background_color();
+
+    background();
     } else if (withdrawal <= (checking + savings)) {
     var difference = parseFloat(withdrawal) - checking;
     savings -= difference;
@@ -66,7 +68,7 @@ function background_color()  {
     checking_text.innerHTML = parseFloat(checking);
     savings_text.innerHTML = parseFloat(savings);
 
-    background_color();
+    background();
     }
   };
 
@@ -80,7 +82,7 @@ function background_color()  {
       savings_text = document.getElementById("savingsBalance");
       savings_text.innerHTML = parseFloat(savings);
 
-      background_color();
+      background();
     } else if (withdrawal <= (savings+checking)) {
       var difference = parseFloat(withdrawal) - savings;
       checking -= difference;
@@ -89,7 +91,7 @@ function background_color()  {
       checking_text.innerHTML = parseFloat(checking);
       savings_text.innerHTML = parseFloat(savings);
 
-      background_color();
+      background();
     }
   };
 };
