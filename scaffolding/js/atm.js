@@ -28,6 +28,8 @@ var checking = 0;
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
     var withdraw = parseFloat(document.getElementById("checkingWithdraw"));
+    if (checking >= withdraw)
+    checking = withdraw -= parseFloat(checking);
 
 
   };
