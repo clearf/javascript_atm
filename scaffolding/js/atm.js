@@ -37,10 +37,34 @@ window.onload = function(){
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
+    // var savingsWithdraw = parseInt(document.getElementById('savingsAmount').value);
+    // if savingsWithdraw > savingsBalance
+    // savingsBalance -= savingsWithdraw;
+  var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
+    if (checkingAmountValue <= checkingBalance) {
+      checkingBalance -= checkingAmountValue;
+      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+    } else if (checkingAmountValue <= (checkingBalance + savingsBalance)) {
+      savingsBalance = (checkingBalance + savingsBalance) - checkingAmountValue;
+      checkingBalance = 0;
+      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    };
+
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
+       var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
+    if (savingsAmountValue <= savingsBalance) {
+      savingsBalance -= savingsAmountValue;
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    } else if (savingsAmountValue <= (checkingBalance + savingsBalance)) {
+      checkingBalance = (checkingBalance + savingsBalance) - savingsAmountValue;
+      savingsBalance = 0;
+      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    };
   };
 
 };
