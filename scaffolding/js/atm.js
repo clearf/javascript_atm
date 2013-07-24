@@ -12,7 +12,7 @@ function deposit(which) {
     "use strict";
     var field = document.getElementById(which + 'Amount');
     var account = document.getElementById(which + 'Balance');
-    var balance = account.innerText.replace("$", "");
+    var balance = parseFloat(account.innerText.replace("$", ""));
     account.innerText = "$" + (balance + parseFloat(field.value));
     account.className = " balance";
 }
@@ -28,7 +28,7 @@ function withdraw(which)  {
     }
     var input = document.getElementById(main+'Amount');
     var account = document.getElementById(main+'Balance');
-    var balance = parseFloat(document.getElementById(main+'Balance').innerText.replace("$", ""));
+    var balance = parseFloat(account.innerText.replace("$", ""));
     var transaction = parseFloat(input.value);
     var difference = balance - transaction;
     if( transaction  > totalBalance() || transaction < 0){
