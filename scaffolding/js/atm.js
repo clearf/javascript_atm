@@ -76,7 +76,7 @@ window.onload = function(){
           document.getElementById('savingsBalance').innerText = "$" + savingsBalance;
       }
 
-      //changes bg to red if balance goes to 0
+      //changes bg to red if balance goes to $0
       if (savingsBalance === 0){
           document.getElementById('savingsBalance').style.backgroundColor = "red";
       }
