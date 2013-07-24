@@ -35,6 +35,9 @@ window.onload = function(){
     var checkingWithdraw = parseInt(document.getElementById('checkingAmount').value);
     var checkingBalance = document.getElementById('checkingBalance');
     var checkingBalanceInt = checkingBalance.innerText.replace("$","");
+    var savingsBalance = document.getElementById('savingsBalance');
+    var savingsBalanceInt = savingsBalance.innerText.replace("$","");
+
     if (checkingWithdraw <= checkingBalanceInt) {
       var newBalance = +checkingBalanceInt - +checkingWithdraw;
       checkingBalance.innerHTML = '$' + newBalance;
@@ -42,6 +45,12 @@ window.onload = function(){
         var currentAccount = document.getElementById('checkingBalance');
         currentAccount.style.backgroundColor = "#FE2E2E";
       }
+    } else if (checkingWithdraw <= checkingBalanceInt + savingsBalanceInt) {
+      var newCheckingBalance =  +checkingBalanceInt - +checkingBalanceInt;
+      checkingBalance.innerHTML = '$' + newCheckingBalance;
+      var newSavingsTransaction = +checkingWithdraw - +checkingBalanceInt;
+      var newSavingsBalance = +savingsBalanceInt - +newSavingsTransaction;
+      savingsBalance.innerHTML = '$' + newSavingsBalance;
     } else {
       return false;
     }
@@ -51,6 +60,9 @@ window.onload = function(){
     var savingsWithdraw = parseInt(document.getElementById('savingsAmount').value);
     var savingsBalance = document.getElementById('savingsBalance');
     var savingsBalanceInt = savingsBalance.innerText.replace("$","");
+    var checkingBalance = document.getElementById('checkingBalance');
+    var checkingBalanceInt = checkingBalance.innerText.replace("$","");
+
     if (savingsWithdraw <= savingsBalanceInt) {
       var newBalance = +savingsBalanceInt - +savingsWithdraw;
       savingsBalance.innerHTML = '$' + newBalance;
@@ -58,9 +70,14 @@ window.onload = function(){
         var currentAccount = document.getElementById('savingsBalance');
         currentAccount.style.backgroundColor = "#FE2E2E";
       }
+    } else if (savingsWithdraw <= checkingBalanceInt + savingsBalanceInt) {
+      var newSavingsBalance = +savingsBalanceInt - +savingsBalanceInt;
+      savingsBalance.innerHTML = '$' + newSavingsBalance;
+      var newCheckingTransaction = +savingsWithdraw - +savingsBalanceInt;
+      var newCheckingBalance = +checkingBalanceInt - +newCheckingTransaction;
+      checkingBalance.innerHTML = '$' + newCheckingBalance;
     } else {
       return false;
     }
   };
-
 };
