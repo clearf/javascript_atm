@@ -34,8 +34,8 @@ var checking = 0;
     //
     checkingBalance.innerHTML = parseFloat(checking);
 
-   } else if {
-    alert("Not Enough Vespene Gas");
+    } else if (checking <= withdraw) {
+      alert("Not Enough Vespene Gas");
     }
   };
 
