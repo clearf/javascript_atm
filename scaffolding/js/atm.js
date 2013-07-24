@@ -25,14 +25,26 @@ window.onload = function(){
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
     // // Cannot go below 0
-    // while (parseInt(document.getElementById('checkingBalance').textContent[1]);
+    var balance = parseInt(document.getElementById('checkingBalance').textContent.match(/\d+/))
+    if (balance !== 0) {
+      var withdrawal = parseInt(document.getElementById('checkingBalance').textContent.match(/\d+/)) - parseInt(document.getElementById('checkingAmount').value);
+      document.getElementById("checkingBalance").textContent = '$' + withdrawal;
+    } else {
+      withdrawal === 0;
+    }
+
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
     // Cannot go below 0
-    // while (document.getElementById('checkingBalance').textContent[1])
+    var balance = parseInt(document.getElementById('savingsBalance').textContent.match(/\d+/))
+    if (balance !== 0) {
+      var withdrawal = parseInt(document.getElementById('savingsBalance').textContent.match(/\d+/)) - parseInt(document.getElementById('savingsAmount').value);
+      document.getElementById("savingsBalance").textContent = '$' + withdrawal;
+    } else {
+      withdrawal === 0;
+    }
   };
-
 };
 
