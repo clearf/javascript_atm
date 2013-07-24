@@ -64,6 +64,7 @@ window.onload = function(){
       document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
     updateCheckingBackgroundColor();
+    updateSavingsBackgroundColor();
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -72,7 +73,13 @@ window.onload = function(){
     if (savingsAmountValue <= savingsBalance) {
       savingsBalance -= savingsAmountValue;
       document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    } else if (savingsAmountValue <= (checkingBalance + savingsBalance)) {
+      checkingBalance = (checkingBalance + savingsBalance) - savingsAmountValue;
+      savingsBalance = 0;
+      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
+    updateCheckingBackgroundColor();
     updateSavingsBackgroundColor();
   };
 
