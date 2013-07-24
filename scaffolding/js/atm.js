@@ -23,11 +23,18 @@ var checking = 0;
 
   document.getElementById("savingsDeposit").onclick = function(event){
     // Any code you put in here will be run when the savingsDeposit button is clicked
+    var deposit = parseFloat(document.getElementById("savingsAmount").value);
+    saving = deposit += parseFloat(saving);
+    // making a variable out of the element ID checking balance.
+    var checkingBalance = (document.getElementById("checkingBalance"));
+    // making the balance above into the 'float' of deposit.
+    savingsBalance.innerHTML = parseFloat(saving);
+    // how many goddamn SEMICOLONS
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
-    var withdraw = parseFloat(document.getElementById("checkingWithdraw"));
+    var withdraw = parseFloat(document.getElementById("checkingAmount"));
     if (checking >= withdraw) {
     checking = withdraw -= parseFloat(checking);
     var checkingBalance = (document.getElementById("checkingBalance"));
@@ -41,6 +48,7 @@ var checking = 0;
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
+
   };
 
 };
