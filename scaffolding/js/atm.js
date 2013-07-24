@@ -24,7 +24,7 @@ window.onload = function() {
 
   // DEPOSIT FUNCTIONS
   document.getElementById("checkingDeposit").onclick = function(event) {
-    checking["amt"] += parseInt(document.getElementById("checkingAmount").value, 10);
+    checking["amt"] += parseFloat(document.getElementById("checkingAmount").value, 10);
     checkingBalBox.innerText = "$" + checking["amt"];
     if (checking["amt"] > 0) {
       checkingBalBox.style.background = "#E3E3E3";
@@ -32,7 +32,7 @@ window.onload = function() {
   };
 
   document.getElementById("savingsDeposit").onclick = function(event) {
-    savings["amt"] += parseInt(document.getElementById("savingsAmount").value, 10);
+    savings["amt"] += parseFloat(document.getElementById("savingsAmount").value, 10);
     savingsBalBox.innerText = "$" + savings["amt"];
     if (savings["amt"] > 0) {
       savingsBalBox.style.background = "#E3E3E3";
@@ -41,12 +41,12 @@ window.onload = function() {
 
   // TOP-LEVEL WITHDRAWAL FUNCTIONS
   document.getElementById("checkingWithdraw").onclick = function(event) {
-    var withdrawalAmt = parseInt(document.getElementById("checkingAmount").value, 10);
+    var withdrawalAmt = parseFloat(document.getElementById("checkingAmount").value, 10);
     withdraw(checking, savings, withdrawalAmt);
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event) {
-    var withdrawalAmt = parseInt(document.getElementById("savingsAmount").value, 10);
+    var withdrawalAmt = parseFloat(document.getElementById("savingsAmount").value, 10);
     withdraw(savings, checking, withdrawalAmt);
   };
 
