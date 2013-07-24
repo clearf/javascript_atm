@@ -19,6 +19,9 @@ window.onload = function(){
     var increase = parseInt(document.getElementById("checkingAmount").value);
     cBalanceValue += increase;
     cBalance.innerText = "$" + cBalanceValue;
+    if (cBalanceValue > 0) {
+      cBalance.className = "balance";
+    }
     // Any code you put in here will be run when the checkingDeposit button is clicked
   };
 
@@ -26,6 +29,9 @@ window.onload = function(){
     var increase = parseInt(document.getElementById("savingsAmount").value);
     sBalanceValue += increase;
     sBalance.innerText = "$" + sBalanceValue;
+    if (sBalanceValue > 0) {
+      sBalance.className = "balance";
+    }
     // Any code you put in here will be run when the savingsDeposit button is clicked
   };
 
@@ -33,6 +39,9 @@ window.onload = function(){
     var decrease = parseInt(document.getElementById("checkingAmount").value);
     cBalanceValue -= decrease;
     cBalance.innerText = "$" + cBalanceValue;
+    if (cBalanceValue == 0 && decrease > 0) {
+      cBalance.className += " zero";
+    }
     // Any code you put in here will be run when the checkingWithdraw button is clicked
   };
 
@@ -40,6 +49,9 @@ window.onload = function(){
     var decrease = parseInt(document.getElementById("savingsAmount").value);
     sBalanceValue -= decrease;
     sBalance.innerText = "$" + sBalanceValue;
+    if (sBalanceValue == 0 && decrease > 0) {
+      sBalance.className += " zero";
+    }
     // Any code you put in here will be run when the savingsWithdraw button is clicked
   };
 
