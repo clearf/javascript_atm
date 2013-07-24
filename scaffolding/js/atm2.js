@@ -41,24 +41,21 @@ window.onload = function(){
   }
 
   function overdraftProtection(account, amount) {
+    function whichAccount(currentAccount, otherAccount) {
+      var currentBalance = parseInt(document.getElementById(currentAccount).innerText.replace("$",""));
+      var currentTransaction = currentBalance;
+      currentBalance -= currentBalance;
+      document.getElementById(currentAccount).innerHTML = "$" + currentBalance;
+      var crossAccountBalance = parseInt(document.getElementById(otherAccount).innerText.replace("$",""));
+      crossAccountBalance -= (amount - currentTransaction);
+      document.getElementById(otherAccount).innerHTML = "$" + crossAccountBalance;
+      accountWarning(currentAccount);
+    }
+
     if (account === "checkingBalance") {
-      var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
-      var currentTransaction = currentBalance;
-      currentBalance -= currentBalance;
-      document.getElementById(account).innerHTML = "$" + currentBalance;
-      var crossAccountBalance = parseInt(document.getElementById("savingsBalance").innerText.replace("$",""));
-      crossAccountBalance -= (amount - currentTransaction);
-      document.getElementById("savingsBalance").innerHTML = "$" + crossAccountBalance;
-      accountWarning(account);
+      whichAccount("checkingBalance", "savingsBalance");
     } else if (account === "savingsBalance") {
-      var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
-      var currentTransaction = currentBalance;
-      currentBalance -= currentBalance;
-      document.getElementById(account).innerHTML = "$" + currentBalance;
-      var crossAccountBalance = parseInt(document.getElementById("checkingBalance").innerText.replace("$",""));
-      crossAccountBalance -= (amount - currentTransaction);
-      document.getElementById("checkingBalance").innerHTML = "$" + crossAccountBalance;
-      accountWarning(account);
+      whichAccount("savingsBalance", "checkingBalance");
     }
   }
 
