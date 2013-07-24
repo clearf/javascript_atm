@@ -43,13 +43,19 @@ var savings_balance = +document.getElementById("savingsBalance").innerText.repla
       var withdraw = parseFloat(document.getElementById('checkingAmount').value);
 
       if ((withdraw > checking) && (withdraw < checking + savings)) {
-           alert("overdraft protection");
+          var checking_balance = document.getElementById("checkingBalance");
+          checking_balance.innerHTML = 0;
+
+          savings = parseFloat(savings) - withdraw;
+          var savings_balance = document.getElementById("savingsBalance");
+          savings_balance.innerHTML = 0;
+
           } else if (withdraw > checking) {
            alert("insufficient funds");
             } else {
             checking = Math.abs(withdraw - parseFloat(checking));
-            var checking_text = document.getElementById("checkingBalance");
-            checking_text.innerHTML = parseFloat(checking);
+            var checking_balance = document.getElementById("checkingBalance");
+            checking_balance.innerHTML = parseFloat(checking);
     }
    };
 
