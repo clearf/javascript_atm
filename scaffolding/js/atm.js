@@ -30,10 +30,16 @@ window.onload = function(){
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
+    var decrease = parseInt(document.getElementById("checkingAmount").value);
+    cBalanceValue -= decrease;
+    cBalance.innerText = "$" + cBalanceValue;
     // Any code you put in here will be run when the checkingWithdraw button is clicked
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
+    var decrease = parseInt(document.getElementById("savingsAmount").value);
+    sBalanceValue -= decrease;
+    sBalance.innerText = "$" + sBalanceValue;
     // Any code you put in here will be run when the savingsWithdraw button is clicked
   };
 
