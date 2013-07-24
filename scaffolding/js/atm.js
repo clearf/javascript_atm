@@ -10,6 +10,24 @@ window.onload = function(){
   var checkingBalance = 0;
   var savingsBalance = 0;
 
+  function updateCheckingBackgroundColor() {
+    if (checkingBalance === 0) {
+      document.getElementById("checkingBalance").style.background = "#FF0000";
+    } else {
+      document.getElementById("checkingBalance").style.background = "#E3E3E3";
+    };
+  };
+
+  function updateSavingsBackgroundColor() {
+    if (savingsBalance === 0) {
+      document.getElementById("savingsBalance").style.background = "#FF0000";
+    } else {
+      document.getElementById("savingsBalance").style.background = "#E3E3E3";
+    };
+  };
+
+  updateCheckingBackgroundColor();
+  updateSavingsBackgroundColor();
   // To retrieve value in html form:
   // var checkingAmountValue = document.getElementById("checkingAmount").value;
   // var savingsAmountValue = document.getElementById("savingsAmount").value;
@@ -22,6 +40,7 @@ window.onload = function(){
     var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
     checkingBalance += checkingAmountValue;
     document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+    updateCheckingBackgroundColor();
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
@@ -29,6 +48,7 @@ window.onload = function(){
     var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
     savingsBalance += savingsAmountValue;
     document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
+    updateSavingsBackgroundColor();
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -38,6 +58,7 @@ window.onload = function(){
       checkingBalance -= checkingAmountValue;
       document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
     };
+    updateCheckingBackgroundColor();
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -47,6 +68,7 @@ window.onload = function(){
       savingsBalance -= savingsAmountValue;
       document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
+    updateSavingsBackgroundColor();
   };
 
 };
