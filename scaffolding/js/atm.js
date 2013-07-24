@@ -30,17 +30,26 @@ window.onload = function(){
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
-    document.getElementById("savingsBalance").innerHTML = "2000";
+    var deposit_amount = document.getElementById("savingsAmount").value;
+     var current_balance = document.getElementById("savingsBalance").innerHTML.split("$")[1];
+     var total_balance = parseInt(deposit_amount) + parseInt(current_balance);
+     document.getElementById("savingsBalance").innerHTML = "$" +total_balance;
     // Any code you put in here will be run when the savingsDeposit button is clicked
   };
 
-  document.getElementById("checkingWithdraw").onclick = function(event){
-    // Any code you put in here will be run when the checkingWithdraw button is clicked
-  };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
+    var withdraw_amount = document.getElementById("savingsAmount").value;
+    var current_balance = document.getElementById("savingsBalance").innerHTML.split("$")[1];
+    var total_balance = parseInt(current_balance) - parseInt(withdraw_amount);
+    document.getElementById("savingsBalance").innerHTML = "$" +total_balance;
+     if (current_balance === 0);
+       var current_balance = document.getElementById("savingsBalance");
+       current_balance.style.backgroundColor = "red";
+     };
+
     // Any code you put in here will be run when the savingsWithdraw button is clicked
-  };
+
 
 };
 
