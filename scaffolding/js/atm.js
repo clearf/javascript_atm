@@ -28,10 +28,15 @@ var checking = 0;
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
     var withdraw = parseFloat(document.getElementById("checkingWithdraw"));
-    if (checking >= withdraw)
+    if (checking >= withdraw) {
     checking = withdraw -= parseFloat(checking);
+    var checkingBalance = (document.getElementById("checkingBalance"));
+    //
+    checkingBalance.innerHTML = parseFloat(checking);
 
-
+   } else if {
+    alert("Not Enough Vespene Gas");
+    }
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
