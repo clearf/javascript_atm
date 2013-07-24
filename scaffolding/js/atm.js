@@ -7,7 +7,11 @@ window.onload = function(){
 
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
-
+  if (document.getElementById('checkingBalance').textContent === "$0"){
+      document.getElementById("checkingBalance").style.backgroundColor = "red";
+    } else if (document.getElementById('checkingBalance').textContent !== "$0"){
+      document.getElementById("checkingBalance").style.backgroundColor = "grey";
+    };
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
     // the increment
@@ -24,7 +28,6 @@ window.onload = function(){
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     // Any code you put in here will be run when the checkingWithdraw button is clicked
-    // // Cannot go below 0
     var balance = parseInt(document.getElementById('checkingBalance').textContent.match(/\d+/))
     if (balance !== 0) {
       var withdrawal = parseInt(document.getElementById('checkingBalance').textContent.match(/\d+/)) - parseInt(document.getElementById('checkingAmount').value);
@@ -35,9 +38,10 @@ window.onload = function(){
 
   };
 
+  document.getElementById("checkingBalance").style.backgroundColor = "red"
+
   document.getElementById("savingsWithdraw").onclick = function(event){
     // Any code you put in here will be run when the savingsWithdraw button is clicked
-    // Cannot go below 0
     var balance = parseInt(document.getElementById('savingsBalance').textContent.match(/\d+/))
     if (balance !== 0) {
       var withdrawal = parseInt(document.getElementById('savingsBalance').textContent.match(/\d+/)) - parseInt(document.getElementById('savingsAmount').value);
@@ -45,6 +49,8 @@ window.onload = function(){
     } else {
       withdrawal === 0;
     }
+
+
   };
 };
 
