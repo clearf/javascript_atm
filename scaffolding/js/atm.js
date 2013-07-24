@@ -5,16 +5,33 @@ window.onload = function() {
   var checkingBalance = document.getElementById("checkingBalance");
   var savingsBalance = document.getElementById("savingsBalance");
 
+  function setBackgroundColor() {
+    if (checkingAccountBalance === 0) {
+      document.getElementsByClassName("balance")[0].style.background = "red";
+    } else {
+      document.getElementsByClassName("balance")[0].style.background = "#F5F5F5";
+    }
+    if (savingsAccountBalance === 0) {
+      document.getElementsByClassName("balance")[1].style.background = "red";
+    } else {
+      document.getElementsByClassName("balance")[1].style.background = "#F5F5F5";
+    }
+  }
+
+  setBackgroundColor();
+
   document.getElementById("checkingDeposit").onclick = function(event){
     var checkingAmount = document.getElementById("checkingAmount").value;
     checkingAccountBalance += parseFloat(checkingAmount);
     checkingBalance.innerHTML = "$" + checkingAccountBalance;
+    setBackgroundColor();
   };
 
   document.getElementById("savingsDeposit").onclick = function(event){
     var savingsAmount = document.getElementById("savingsAmount").value;
     savingsAccountBalance += parseFloat(savingsAmount);
     savingsBalance.innerHTML = "$" + savingsAccountBalance;
+    setBackgroundColor();
   };
 
   document.getElementById("checkingWithdraw").onclick = function(event){
@@ -30,6 +47,7 @@ window.onload = function() {
         checkingBalance.innerHTML = "$" + checkingAccountBalance;
       }
     }
+    setBackgroundColor();
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
@@ -45,5 +63,6 @@ window.onload = function() {
         savingsBalance.innerHTML = "$" + savingsAccountBalance;
       }
     }
+    setBackgroundColor();
   };
 };
