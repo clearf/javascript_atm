@@ -1,21 +1,25 @@
+
 // returns the total balance of both accounts
 function totalBalance() {
-  var checkingAmount = parseInt(document.getElementById('checkingBalance').innerText.replace("$",""));
-  var savingsAmount = parseInt(document.getElementById('savingsBalance').innerText.replace("$", ""));
-  return (checkingAmount + savingsAmount);
+    "use strict";
+    var checkingAmount = parseFloat(document.getElementById('checkingBalance').innerText.replace("$", ""));
+    var savingsAmount = parseFloat(document.getElementById('savingsBalance').innerText.replace("$", ""));
+    return (checkingAmount + savingsAmount);
 }
 
 //deposits into the specified account
 function deposit(which) {
-    var field = document.getElementById(which+'Amount');
-    var account = document.getElementById(which+'Balance');
-    var balance = parseInt(document.getElementById(which+'Balance').innerText.replace("$", ""));
-    account.innerText = "$" + (balance + parseInt(field.value));
+    "use strict";
+    var field = document.getElementById(which + 'Amount');
+    var account = document.getElementById(which + 'Balance');
+    var balance = account.innerText.replace("$", "");
+    account.innerText = "$" + (balance + parseFloat(field.value));
     account.className = " balance";
 }
 
 // withdraws from the specificed account
 function withdraw(which)  {
+    "use strict";
     var main = 'checking';
     var other = 'savings';
     if(which === 'savings') {
@@ -24,25 +28,29 @@ function withdraw(which)  {
     }
     var input = document.getElementById(main+'Amount');
     var account = document.getElementById(main+'Balance');
-    var balance = parseInt(document.getElementById(main+'Balance').innerText.replace("$", ""));
-    var difference = balance - parseInt(input.value)
-    if( parseInt(input.value)  > totalBalance()) {
-       alert("Sorry, but you don't have enough funds to provide overdraft protection");
+    var balance = parseFloat(document.getElementById(main+'Balance').innerText.replace("$", ""));
+    var transaction = parseFloat(input.value);
+    var difference = balance - transaction;
+    if( transaction  > totalBalance() || transaction < 0){
+       alert("Sorry, but your request cannot be proccessed");
     } else if(difference > 0) {
-      account.innerText="$"+(balance - Math.abs(difference));
-    } else if(difference <= 0) {
-      account.innerText = "$" + 0;
-      account.className += " zero";
+      account.innerText="$"+(balance - transaction);
+    } else if(difference < 0) {
       var otherAccount = document.getElementById(other+"Balance");
-      var otherBalance = parseInt(document.getElementById(other+"Balance").innerHTML.replace("$",""));
+      var otherBalance = parseFloat(document.getElementById(other+"Balance").innerHTML.replace("$",""));
       otherAccount.innerHTML="$"+(otherBalance - Math.abs(difference));
       if (otherBalance === Math.abs(difference)) {
         otherAccount.className += " zero";
       }
     }
+    if (transaction >= balance) {
+      account.innerText = "$" + 0;
+      account.className += " zero";
+    }
   }
 
 window.onload = function(){
+  "use strict";
 
   document.getElementById("checkingDeposit").onclick = function(event){
     // Any code you put in here will be run when the checkingDeposit button is clicked
