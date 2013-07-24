@@ -56,13 +56,12 @@ window.onload = function(){
     var checkingAmountValue = parseInt(document.getElementById("checkingAmount").value);
     if (checkingAmountValue <= checkingBalance) {
       checkingBalance -= checkingAmountValue;
-      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
     } else if (checkingAmountValue <= (checkingBalance + savingsBalance)) {
       savingsBalance = (checkingBalance + savingsBalance) - checkingAmountValue;
       checkingBalance = 0;
-      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
-      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
+    document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+    document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     updateCheckingBackgroundColor();
     updateSavingsBackgroundColor();
   };
@@ -72,13 +71,12 @@ window.onload = function(){
     var savingsAmountValue = parseInt(document.getElementById("savingsAmount").value);
     if (savingsAmountValue <= savingsBalance) {
       savingsBalance -= savingsAmountValue;
-      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     } else if (savingsAmountValue <= (checkingBalance + savingsBalance)) {
       checkingBalance = (checkingBalance + savingsBalance) - savingsAmountValue;
       savingsBalance = 0;
-      document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
-      document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     };
+    document.getElementById("checkingBalance").innerText = ("$" + checkingBalance);
+    document.getElementById("savingsBalance").innerText = ("$" + savingsBalance);
     updateCheckingBackgroundColor();
     updateSavingsBackgroundColor();
   };
