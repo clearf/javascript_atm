@@ -37,20 +37,37 @@ window.onload = function(){
 
   document.getElementById("checkingWithdraw").onclick = function(event){
     var decrease = parseInt(document.getElementById("checkingAmount").value);
-    cBalanceValue -= decrease;
-    cBalance.innerText = "$" + cBalanceValue;
+    if (cBalanceValue - decrease >= 0) {
+      cBalanceValue -= decrease;
+      cBalance.innerText = "$" + cBalanceValue;
+    } else if (cBalanceValue + sBalanceValue >= decrease) {
+      alert("Overdraft protection - taking extra from your savings account.");
+      sBalanceValue -= (decrease - cBalanceValue);
+      sBalance.innerText = "$" + sBalanceValue;
+      cBalanceValue = 0;
+      cBalance.innerText = "$" + cBalanceValue;
+      if (sBalanceValue == 0 && decrease > 0) {
+        sBalance.className = "balance zero";
+      }
+    } else {
+      alert("This transaction would take your savings account below zero!");
+    }
     if (cBalanceValue == 0 && decrease > 0) {
-      cBalance.className += " zero";
+      cBalance.className = "balance zero";
     }
     // Any code you put in here will be run when the checkingWithdraw button is clicked
   };
 
   document.getElementById("savingsWithdraw").onclick = function(event){
     var decrease = parseInt(document.getElementById("savingsAmount").value);
-    sBalanceValue -= decrease;
-    sBalance.innerText = "$" + sBalanceValue;
-    if (sBalanceValue == 0 && decrease > 0) {
-      sBalance.className += " zero";
+    if (sBalanceValue - decrease >= 0) {
+      sBalanceValue -= decrease;
+      sBalance.innerText = "$" + sBalanceValue;
+      if (sBalanceValue == 0 && decrease > 0) {
+        sBalance.className += " zero";
+      }
+    } else {
+      alert("This transaction would take your savings account below zero!");
     }
     // Any code you put in here will be run when the savingsWithdraw button is clicked
   };
