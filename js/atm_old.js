@@ -6,49 +6,49 @@
 // window.onload = function(){
 
   // function checkCurrentBalance() {
-  //   var checkingBalance = parseInt(document.getElementById("checkingBalance").innerText.replace("$",""));
-  //   var savingsBalance = parseInt(document.getElementById("savingsBalance").innerText.replace("$",""));
+  //   var checkingBalance = parseInt($("checkingBalance").innerText.replace("$",""));
+  //   var savingsBalance = parseInt($("savingsBalance").innerText.replace("$",""));
   // }
 
-  // document.getElementById("checkingDeposit").onclick = function(event){
-    // var checkingAmount = parseInt(document.getElementById('checkingAmount').value);
-    // var checkingBalance = document.getElementById('checkingBalance');
+  // $("checkingDeposit").onclick = function(event){
+    // var checkingAmount = parseInt($('checkingAmount').value);
+    // var checkingBalance = $('checkingBalance');
     // var checkingBalanceInt = checkingBalance.innerText.replace("$","");
     // var newBalance = +checkingBalanceInt + +checkingAmount;
     // checkingBalance.innerHTML = '$' + newBalance;
 
     // balanceNotZero(checkingBalance);
     // if (checkingBalanceInt === "0") {
-    //   var currentAccount = document.getElementById('checkingBalance');
+    //   var currentAccount = $('checkingBalance');
     //   currentAccount.style.backgroundColor = "#E3E3E3";
     // }
   // };
 
-  // document.getElementById("savingsDeposit").onclick = function(event){
-    // var savingsAmount = parseInt(document.getElementById('savingsAmount').value);
-    // var savingsBalance = document.getElementById('savingsBalance');
+  // $("savingsDeposit").onclick = function(event){
+    // var savingsAmount = parseInt($('savingsAmount').value);
+    // var savingsBalance = $('savingsBalance');
     // var savingsBalanceInt = savingsBalance.innerText.replace("$","");
     // var newBalance = +savingsBalanceInt + +savingsAmount;
     // savingsBalance.innerHTML = '$' + newBalance;
 
     // if (savingsBalanceInt === "0") {
-    //   var currentAccount = document.getElementById('savingsBalance');
+    //   var currentAccount = $('savingsBalance');
     //   currentAccount.style.backgroundColor = "#E3E3E3";
     // }
   // };
 
-  // document.getElementById("checkingWithdraw").onclick = function(event){
-  //   var checkingWithdraw = parseInt(document.getElementById('checkingAmount').value);
-    // var checkingBalance = document.getElementById('checkingBalance');
+  // $("checkingWithdraw").onclick = function(event){
+  //   var checkingWithdraw = parseInt($('checkingAmount').value);
+    // var checkingBalance = $('checkingBalance');
     // var checkingBalanceInt = checkingBalance.innerText.replace("$","");
-    // var savingsBalance = document.getElementById('savingsBalance');
+    // var savingsBalance = $('savingsBalance');
     // var savingsBalanceInt = savingsBalance.innerText.replace("$","");
 
     // if (checkingWithdraw <= checkingBalanceInt) {
     //   var newBalance = +checkingBalanceInt - +checkingWithdraw;
     //   checkingBalance.innerHTML = '$' + newBalance;
       // if (newBalance === 0) {
-      //   var currentAccount = document.getElementById('checkingBalance');
+      //   var currentAccount = $('checkingBalance');
       //   currentAccount.style.backgroundColor = "#FE2E2E";
       // }
     // } else if (checkingWithdraw <= checkingBalanceInt + savingsBalanceInt) {
@@ -62,23 +62,23 @@
   //   }
   // };
 
-  // document.getElementById("savingsWithdraw").onclick = function(event){
+  // $("savingsWithdraw").onclick = function(event){
     // checkCurrentBalance();
-    // var savingsWithdraw = parseInt(document.getElementById("savingsAmount").value);
+    // var savingsWithdraw = parseInt($("savingsAmount").value);
 
     // if (savingsWithdraw <= savingsBalance) {
     //   var newBalance = +savingsBalance - +savingsWithdraw;
-    //   document.getElementById("savingsBalance").innerHTML = '$' + newBalance;
+    //   $("savingsBalance").innerHTML = '$' + newBalance;
       // if (newBalance === 0) {
-      //   var currentAccount = document.getElementById('savingsBalance');
+      //   var currentAccount = $('savingsBalance');
       //   currentAccount.style.backgroundColor = "#FE2E2E";
       // }
   //   } else if (savingsWithdraw <= checkingBalance + savingsBalance) {
   //     var newSavingsBalance = +savingsBalance - +savingsBalance;
-  //     document.getElementById("savingsBalance").innerHTML = '$' + newSavingsBalance;
+  //     $("savingsBalance").innerHTML = '$' + newSavingsBalance;
   //     var newCheckingTransaction = +savingsWithdraw - +savingsBalance;
   //     var newCheckingBalance = +checkingBalance - +newCheckingTransaction;
-  //     document.getElementById("checkingBalance").innerHTML = '$' + newCheckingBalance;
+  //     $("checkingBalance").innerHTML = '$' + newCheckingBalance;
   //   } else {
   //     return false;
   //   }
@@ -88,7 +88,7 @@
   //   console.log("whatsup");
   //   if (parseInt(account.innerText.replace("$","")) === 0) {
   //     console.log("hey");
-  //     var currentAccount = document.getElementById(account);
+  //     var currentAccount = $(account);
   //     currentAccount.style.backgroundColor = "#E3E3E3";
   //   }
   // }

@@ -3,26 +3,28 @@
 // At this point, all of the objects in the document are in the DOM,
 // and all the images and sub-frames have finished loading.
 
-window.onload = function(){
+$(function() {
+  // okay, changed
   function checkCurrentBalance() {
-    var checkingBalance = parseInt(document.getElementById("checkingBalance").innerText.replace("$",""));
-    var savingsBalance = parseInt(document.getElementById("savingsBalance").innerText.replace("$",""));
+    var checkingBalance = parseInt($("#checkingBalance").text());
+    var savingsBalance = parseInt($("#savingsBalance").text());
     return checkingBalance + savingsBalance;
   }
 
+
   function depositMoney(account, amount) {
-    var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+    var currentBalance = parseInt($(account).text());
     currentBalance += amount;
-    document.getElementById(account).innerHTML = "$" + currentBalance;
+    $(account).text(currentBalance);
     accountWarning(account);
   }
 
   function withdrawMoney(account, amount) {
-    var currentBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+    var currentBalance = parseInt($(account).text());
     var totalBalance = checkCurrentBalance();
     if (amount <= currentBalance) {
       currentBalance -= amount;
-      document.getElementById(account).innerHTML = "$" + currentBalance;
+      $(account).text(currentBalance);
       accountWarning(account);
     } else if (amount <= totalBalance) {
       overdraftProtection(account, amount);
@@ -32,52 +34,52 @@ window.onload = function(){
   }
 
   function accountWarning(account) {
-    var checkAccountBalance = parseInt(document.getElementById(account).innerText.replace("$",""));
+    var checkAccountBalance = parseInt($(account).text());
     if (checkAccountBalance === 0) {
-      document.getElementById(account).style.backgroundColor = "#FE2E2E";
+      $(account).parent().css({'background-color': '#FE2E2E'});
     } else {
-      document.getElementById(account).style.backgroundColor = "#E3E3E3";
+      $(account).parent().css({'background-color': '#E3E3E3'});
     }
   }
 
   function overdraftProtection(account, amount) {
     function whichAccount(currentAccount, otherAccount) {
-      var currentBalance = parseInt(document.getElementById(currentAccount).innerText.replace("$",""));
+      var currentBalance = parseInt($(currentAccount).text());
       var currentTransaction = currentBalance;
       currentBalance -= currentBalance;
-      document.getElementById(currentAccount).innerHTML = "$" + currentBalance;
-      var crossAccountBalance = parseInt(document.getElementById(otherAccount).innerText.replace("$",""));
+      $(currentAccount).text(currentBalance);
+      var crossAccountBalance = parseInt($(otherAccount).text());
       crossAccountBalance -= (amount - currentTransaction);
-      document.getElementById(otherAccount).innerHTML = "$" + crossAccountBalance;
+      $(otherAccount).text(crossAccountBalance);
       accountWarning(currentAccount);
     }
 
-    if (account === "checkingBalance") {
-      whichAccount("checkingBalance", "savingsBalance");
-    } else if (account === "savingsBalance") {
-      whichAccount("savingsBalance", "checkingBalance");
+    if (account === "#checkingBalance") {
+      whichAccount("#checkingBalance", "#savingsBalance");
+    } else if (account === "#savingsBalance") {
+      whichAccount("#savingsBalance", "#checkingBalance");
     }
   }
 
-  document.getElementById("checkingDeposit").onclick = function(event){
-    var checkingAmount = parseInt(document.getElementById("checkingAmount").value);
-    depositMoney("checkingBalance", checkingAmount);
-  };
+  $("#checkingDeposit").click(function () {
+    var checkingAmount = parseInt($("#checkingAmount").val());
+    depositMoney("#checkingBalance", checkingAmount);
+  });
 
-  document.getElementById("savingsDeposit").onclick = function(event){
-    var savingsAmount = parseInt(document.getElementById("savingsAmount").value);
-    depositMoney("savingsBalance", savingsAmount);
-  };
+  $("#savingsDeposit").click(function () {
+    var savingsAmount = parseInt($("#savingsAmount").val());
+    depositMoney("#savingsBalance", savingsAmount);
+  });
 
-  document.getElementById("checkingWithdraw").onclick = function(event){
+  $("#checkingWithdraw").click(function () {
     checkCurrentBalance();
-    var checkingAmount = parseInt(document.getElementById("checkingAmount").value);
-    withdrawMoney("checkingBalance", checkingAmount);
-  };
+    var checkingAmount = parseInt($("#checkingAmount").val());
+    withdrawMoney("#checkingBalance", checkingAmount);
+  });
 
-  document.getElementById("savingsWithdraw").onclick = function(event){
+  $("#savingsWithdraw").click(function () {
     checkCurrentBalance();
-    var savingsAmount = parseInt(document.getElementById("savingsAmount").value);
-    withdrawMoney("savingsBalance", savingsAmount);
-  };
-};
+    var savingsAmount = parseInt($("#savingsAmount").val());
+    withdrawMoney("#savingsBalance", savingsAmount);
+  });
+});
