@@ -5,69 +5,69 @@
 
 window.onload = function(){
 
-// Returns the whole checkingBalance div
-var checkingBalance = document.getElementById("checkingBalance");
-// Sets initial checkingBalanceAmount
+// Returns checkingBalance div and sets initial balance amount
+var checkingBalance = $('#checkingBalance')[0];
 var checkingBalanceAmount = 0;
 
-// Returns the whole savingsBalance div
-var savingsBalance = document.getElementById("savingsBalance");
-// Sets initial savingsBalanceAmount
+// Returns savingsBalance div and sets initial balance amount
+var savingsBalance = $('#savingsBalance')[0];
 var savingsBalanceAmount = 0;
 
  function reddify(accountAmount, index) { //checking is 0 and savings is 1
-    if (accountAmount === 0) {
-      document.getElementsByClassName("balance")[index].style.background = "red";
-    }
-    // unreddify as well
+  if (accountAmount === 0) {
+    $('.balance')[index].style.background = "red";
+  } else {
+    $('.balance')[index].style.background = "#E3E3E3";
   }
+}
 
   // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onclick
   // The click event is raised when the user clicks on an element.
-  document.getElementById("checkingDeposit").onclick = function(event){
-    var num = document.getElementById("checkingAmount").value;
+  $('#checkingDeposit')[0].onclick = function(event){
+    var num = $('#checkingAmount').val();
     if (num >= 0) {
       checkingBalanceAmount += num*1;
-      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+      $('#checkingBalance').text("$"+checkingBalanceAmount);
     }
     reddify(checkingBalanceAmount,0);
   };
 
-  document.getElementById("savingsDeposit").onclick = function(event){
-    var num = document.getElementById("savingsAmount").value;
+  $('#savingsDeposit')[0].onclick = function(event){
+    var num = $('#savingsAmount').val();
     if (num >= 0) {
       savingsBalanceAmount += num*1;
-      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+      $('#savingsBalance').text("$"+savingsBalanceAmount);
     }
     reddify(savingsBalanceAmount,1);
   };
 
-  document.getElementById("checkingWithdraw").onclick = function(event){
-    var num = document.getElementById("checkingAmount").value;
+
+  $('#checkingWithdraw')[0].onclick = function(event){
+    var num = $('#checkingAmount').val();
     if (Math.abs(num) <= checkingBalanceAmount) {
       checkingBalanceAmount -= num*1;
-      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+      $('#checkingBalance').text("$"+checkingBalanceAmount);
     } else if (Math.abs(num) <= (checkingBalanceAmount+savingsBalanceAmount)) {
       var diff = num*1 - checkingBalanceAmount;
       checkingBalanceAmount -= (num*1-diff);
       savingsBalanceAmount -= (diff);
-      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
-      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+      $('#checkingBalance').text("$"+checkingBalanceAmount);
+      $('#savingsBalance').text("$"+savingsBalanceAmount);
     }
     reddify(checkingBalanceAmount,0);
   };
 
-  document.getElementById("savingsWithdraw").onclick = function(event){
+  $('#savingsWithdraw')[0].onclick = function(event){
     var num = document.getElementById("savingsAmount").value;
     if (Math.abs(num) <= savingsBalanceAmount) {
       savingsBalanceAmount -= num*1;
-      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
+      $('#savingsBalance').text("$"+savingsBalanceAmount);
     } else if (Math.abs(num) <= (savingsBalanceAmount+checkingBalanceAmount)) {
       var diff = num*1 - savingsBalanceAmount;
       savingsBalanceAmount -= (num*1-diff);
       checkingBalanceAmount -= (diff);
-      savingsBalance.innerHTML = "$"+savingsBalanceAmount;
-      checkingBalance.innerHTML = "$"+checkingBalanceAmount;
+      $('#savingsBalance').text("$"+savingsBalanceAmount);
+      $('#checkingBalance').text("$"+checkingBalanceAmount);
     }
     reddify(savingsBalanceAmount,1);
   };
